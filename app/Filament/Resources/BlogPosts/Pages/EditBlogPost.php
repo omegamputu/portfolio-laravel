@@ -20,4 +20,14 @@ class EditBlogPost extends EditRecord
             RestoreAction::make(),
         ];
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
+
+    protected function getSavedNotificationTitle(): ?string
+    {
+        return 'Post updated';
+    }
 }

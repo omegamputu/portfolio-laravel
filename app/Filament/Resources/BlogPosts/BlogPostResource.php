@@ -5,6 +5,7 @@ namespace App\Filament\Resources\BlogPosts;
 use App\Filament\Resources\BlogPosts\Pages\CreateBlogPost;
 use App\Filament\Resources\BlogPosts\Pages\EditBlogPost;
 use App\Filament\Resources\BlogPosts\Pages\ListBlogPosts;
+use App\Filament\Resources\BlogPosts\Pages\ViewPost;
 use App\Filament\Resources\BlogPosts\Schemas\BlogPostForm;
 use App\Filament\Resources\BlogPosts\Tables\BlogPostsTable;
 use App\Models\BlogPost;
@@ -16,14 +17,19 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Str;
+use UnitEnum;
 
 class BlogPostResource extends Resource
 {
     protected static ?string $model = BlogPost::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::DocumentText;
 
     protected static ?string $recordTitleAttribute = 'BlogPost';
+
+    protected static ?string $navigationLabel = 'Posts';
+
+    protected static string | UnitEnum | null $navigationGroup = 'Blog';
 
     public static function form(Schema $schema): Schema
     {
@@ -46,6 +52,7 @@ class BlogPostResource extends Resource
     {
         return [
             'index' => ListBlogPosts::route('/'),
+            'view' => ViewPost::route('/{record}'),
             'create' => CreateBlogPost::route('/create'),
             'edit' => EditBlogPost::route('/{record}/edit'),
         ];

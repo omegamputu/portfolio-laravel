@@ -33,10 +33,13 @@ class BlogPostsTable
                 TextColumn::make('author.name')
                     ->label('Author')
                     ->sortable(),
+                TextColumn::make('category.name')
+                    ->label('Category')
+                    ->sortable(),
                 TextColumn::make('published_at')
                     ->dateTime('M d, Y H:i')
                     ->sortable(),
-                TextColumn::make('views')->sortable(),
+                //TextColumn::make('views')->sortable(),
                 TextColumn::make('updated_at')
                     ->since()
                     ->label('Last Updated'),

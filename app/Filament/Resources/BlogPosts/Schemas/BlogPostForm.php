@@ -97,7 +97,7 @@ class BlogPostForm
                             ->multiple()
                             ->searchable()
                             ->preload(),
-                    ])->collapsed(true),
+                    ]),
 
                     Section::make('SEO Details')->schema([
                         //
